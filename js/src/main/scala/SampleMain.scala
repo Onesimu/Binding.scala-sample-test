@@ -17,15 +17,6 @@ object SampleMain {
 
   @dom
   def table = {
-    <div>
-      <button
-        onclick={ event: Event =>
-          data.get += Contact(Var("Yang Bo"), Var("yang.bo@rea-group.com"))
-        }
-      >
-        Add a contact
-      </button>
-    </div>
     <table border="1" cellPadding="5">
       <thead>
         <tr>
@@ -47,7 +38,7 @@ object SampleMain {
               <td>
                 <button
                   onclick={ event: Event =>
-                    contact.name := "Modified Name"
+                    contact.name := "New Name"
                   }
                 >
                   Modify the name
@@ -58,6 +49,15 @@ object SampleMain {
         }
       </tbody>
     </table>
+    <div>
+      <button
+        onclick={ event: Event =>
+          data.get += Contact(Var("Yang Bo"), Var("yang.bo@rea-group.com"))
+        }
+      >
+        Add a contact
+      </button>
+    </div>
   }
 
   @JSExport
