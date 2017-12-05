@@ -52,7 +52,7 @@ object SampleMain {
     <div>
       <button
         onclick={ event: Event =>
-          data.get += Contact(Var("Thomas"), Var("yang.bo@rea-group.com"))
+          data.get += Contact(Var("Thomas"), Var("Je t'aime!"))
         }
       >
         Add a contact
