@@ -4,8 +4,11 @@ import com.thoughtworks.binding.dom
 
 import org.scalajs.dom.document
 import org.scalajs.dom.raw.Event
+import org.scalajs.dom.raw.Node
 import org.scalajs.dom.html.Input
 import org.scalajs.dom.ext.Ajax
+import org.scalajs.dom.WebSocket
+import org.scalajs.dom.MessageEvent
 
 import scala.scalajs.js.JSON
 import scala.scalajs.concurrent.JSExecutionContext.Implicits.queue
@@ -103,10 +106,28 @@ object SampleMain {
     </div>
   }
 
+  @dom
+  def market = {
+  val value = Var("")
+   val echo = "ws://m-kf.yshenglong.cn:9998/Market/app/market"
+   val socket = new WebSocket(echo)
+   socket.onmessage = { (e: MessageEvent) =>
+      value := e.data.toString
+   }
+   socket.onopen = { (e: Event) =>
+      socket.send("009430/////////////////////////////////////////phone//////////////4c58294f5102a8a29b93478fc7e4551f")
+   }
+   <div>
+     Your input value is { value.bind }
+   </div>
+  }
+
   @JSExport
   def main(): Unit = {
     // dom.render(document.body, table)
-    dom.render(document.body, fender)
+    // dom.render(container, fender)
+    dom.render(document.getElementById("application-container"), market)
+    dom.render(document.getElementById("container"), render)
   }
 
 }
